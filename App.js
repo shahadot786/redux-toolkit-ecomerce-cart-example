@@ -1,11 +1,13 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import {Provider} from 'react-redux';
+import {store} from './src/store/store';
+import MainNavigator from './src/Routes/MainNavigator';
 
 const App = () => {
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <Provider store={store}>
+      <MainNavigator />
+    </Provider>
   );
 };
 
