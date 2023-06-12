@@ -1,7 +1,12 @@
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {addProductToCart, removeProductToCart} from '../store/slice/CartSlice';
+import {
+  addProductToCart,
+  deleteCartItem,
+  removeProductToCart,
+} from '../store/slice/CartSlice';
+import {increaseQty} from '../store/slice/ProductSlice';
 
 const ProductsScreen = () => {
   const cartItem = useSelector(state => state.cart);
@@ -35,7 +40,11 @@ const ProductsScreen = () => {
                       <TouchableOpacity
                         style={styles.gBtn}
                         onPress={() => {
-                          dispatch(removeProductToCart(item));
+                          if (item.qty > 1) {
+                            dispatch(removeProductToCart(item));
+                          } else {
+                            dispatch(deleteCartItem(item.id));
+                          }
                         }}>
                         <Text style={{color: '#fff', fontWeight: 'bold'}}>
                           -
@@ -54,6 +63,7 @@ const ProductsScreen = () => {
                         style={styles.gBtn}
                         onPress={() => {
                           dispatch(addProductToCart(item));
+                          dispatch(increaseQty(item));
                         }}>
                         <Text style={{color: '#fff', fontWeight: 'bold'}}>
                           +

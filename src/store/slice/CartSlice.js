@@ -18,7 +18,7 @@ const CartSlice = createSlice({
           image: action.payload.image,
           name: action.payload.name,
           price: action.payload.price,
-          qty: action.payload.qty,
+          qty: action.payload.qty + 1,
         });
       } else {
         state[myIndex].qty = state[myIndex].qty + 1;
@@ -36,9 +36,13 @@ const CartSlice = createSlice({
         state[myIndex].qty = state[myIndex].qty - 1;
       }
     },
+    deleteCartItem(state, action) {
+      return (state = state.filter(item => item.id !== action.payload));
+    },
   },
 });
 
-export const {addProductToCart, removeProductToCart} = CartSlice.actions;
+export const {addProductToCart, removeProductToCart, deleteCartItem} =
+  CartSlice.actions;
 
 export default CartSlice.reducer;
