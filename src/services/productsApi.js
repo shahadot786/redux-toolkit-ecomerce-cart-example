@@ -18,7 +18,37 @@ export const productsApi = createApi({
     search: builder.query({
       query: query => `products/search?q=${query}`,
     }),
+    //add new product
+    addProduct: builder.mutation({
+      query: product => ({
+        url: 'products/add',
+        method: 'POST',
+        body: product,
+      }),
+    }),
+    //update product
+    updateProduct: builder.mutation({
+      query: ({id, ...rest}) => ({
+        url: `products/${id}`,
+        method: 'PUT',
+        body: rest,
+      }),
+    }),
+    //delete product
+    deleteProduct: builder.mutation({
+      query: id => ({
+        url: `products/${id}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
-export const {useProductsQuery, useProductQuery} = productsApi;
+export const {
+  useProductsQuery,
+  useProductQuery,
+  useSearchQuery,
+  useAddProductMutation,
+  useUpdateProductMutation,
+  useDeleteProductMutation,
+} = productsApi;

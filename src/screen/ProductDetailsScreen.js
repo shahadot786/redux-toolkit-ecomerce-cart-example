@@ -15,7 +15,7 @@ const ProductDetailsScreen = ({route, navigation}) => {
   const {data, isLoading} = useProductQuery(itemData?.id);
   //   console.log(data);
   return isLoading ? (
-    <ActivityIndicator size="large" color="#10101d" />
+    <ActivityIndicator size="large" color="#d8d8d8" />
   ) : (
     <View style={styles.container}>
       <Pressable onPress={() => navigation.goBack()}>
