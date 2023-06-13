@@ -7,6 +7,8 @@ import ProductsScreen from '../screen/ProductsScreen';
 import {useDispatch} from 'react-redux';
 import {Data} from '../Data';
 import {addProducts} from '../store/slice/ProductSlice';
+import AllProductsScreen from '../screen/AllProductsScreen';
+import ProductDetailsScreen from '../screen/ProductDetailsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,10 +24,12 @@ const MainNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="AllProducts"
         screenOptions={{headerShown: false}}>
+        <Stack.Screen name="AllProducts" component={AllProductsScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Products" component={ProductsScreen} />
+        <Stack.Screen name="ProductsDetails" component={ProductDetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
